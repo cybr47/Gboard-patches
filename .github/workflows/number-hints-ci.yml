@@ -1,0 +1,35 @@
+name: Gboard Hide Number Hints CI
+
+on:
+  push:
+    branches:
+      - feature/hide-number-hints
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Build patch bundle and run tests
+        env:
+          GITHUB_ACTOR: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :patches:buildAndroid :patches:test :extensions:extension:test --stacktrace
+      - name: Upload test bundle (no release)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gboard-hide-number-hints-experimental
+          path: patches/build/libs/*.mpp
+          if-no-files-found: error
