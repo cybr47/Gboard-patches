@@ -9,14 +9,14 @@ import dev.jason.gboardpatches.patches.gboard.shared.findMutableMethodOrThrow
 import dev.jason.gboardpatches.patches.gboard.shared.gboardPatchesExtensionCarrierPatch
 import dev.jason.gboardpatches.patches.gboard.shared.isOpcode
 import dev.jason.gboardpatches.patches.gboard.shared.returnInstructionIndices
+import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallEmitter
+import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 private const val SOFT_KEY_VIEW =
     "Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;"
 private const val SOFT_KEY_DEF =
     "Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;"
-private const val RUNTIME =
-    "Ldev/jason/gboardpatches/extension/numberhints/GboardHideNumberHintsRuntime;"
 
 /**
  * Hook the dedicated label renderer x(), NOT the composited SoftKeyView.r() bind.
@@ -62,11 +62,11 @@ internal val gboardHideNumberHintsBytecodePatch = bytecodePatch(
         // /range is necessary: p0 and p1 are v16 and v17 in this method.
         method.addInstructions(
             returns.single(),
-            "invoke-static/range {p0 .. p1}, $RUNTIME->afterKeyUpdate(Ljava/lang/Object;Ljava/lang/Object;)V",
+            RuntimeCallEmitter.invoke(RuntimeCallId.NUMBER_HINTS_RUNTIME_AFTER_KEY_UPDATE, "p0 .. p1"),
         )
         method.addInstructions(
             0,
-            "invoke-static/range {p0 .. p0}, $RUNTIME->beforeKeyUpdate(Ljava/lang/Object;)V",
+            RuntimeCallEmitter.invoke(RuntimeCallId.NUMBER_HINTS_RUNTIME_BEFORE_KEY_UPDATE, "p0 .. p0"),
         )
     }
 }
