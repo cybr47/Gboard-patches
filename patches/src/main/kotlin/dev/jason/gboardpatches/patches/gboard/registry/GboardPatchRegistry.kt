@@ -63,6 +63,7 @@ import dev.jason.gboardpatches.patches.gboard.features.lanftp.gboardLanFtpManife
 import dev.jason.gboardpatches.patches.gboard.features.latinglobe.gboardLatinGlobeKeyIgnoreIntervalBytecodePatch
 import dev.jason.gboardpatches.patches.gboard.features.latinglobe.gboardLatinGlobeKeyIgnoreIntervalFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsFeatureMarkerPatch
+import dev.jason.gboardpatches.patches.gboard.features.numberhints.gboardHideNumberHintsBytecodePatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoLifecyclePatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoPolicyPatch
@@ -844,6 +845,17 @@ val gboardPackageRenamePatch = gboardPublicResourcePatch(
 }
 
 @Suppress("unused")
+val gboardHideNumberHintsPatch = gboardPublicResourcePatch(
+    featureId = "hide_number_hints",
+    name = "Hide Number Hints",
+    description = "Hide small 1-0 labels above English QWERTY letters while keeping long-press numbers.",
+    default = false,
+) {
+    compatibleWith(COMPATIBILITY_GBOARD)
+    dependsOn(gboardHideNumberHintsBytecodePatch)
+}
+
+@Suppress("unused")
 val gboardSignatureBypassPatch = gboardPublicResourcePatch(
     featureId = "add_gboard_signature_bypass",
     name = "Add Gboard Signature Bypass",
@@ -901,6 +913,7 @@ object GboardPublishedPatchCatalog {
         gboardLatinGlobeKeyIgnoreIntervalPatch,
         gboardZhuyinBottomRowWeightPatch,
         gboardPackageRenamePatch,
+        gboardHideNumberHintsPatch,
         gboardSignatureBypassPatch,
     ).filterTo(linkedSetOf()) { patch -> patch.name != null }
 
