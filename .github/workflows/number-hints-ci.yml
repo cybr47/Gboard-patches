@@ -22,7 +22,7 @@ jobs:
       - name: Build patch bundle and run tests
         env:
           GITHUB_ACTOR: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN || github.token }}
         run: |
           chmod +x ./gradlew
           ./gradlew :patches:buildAndroid :patches:test :extensions:extension:test --stacktrace
