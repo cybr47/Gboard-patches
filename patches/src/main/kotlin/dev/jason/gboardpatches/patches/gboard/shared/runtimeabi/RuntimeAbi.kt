@@ -68,6 +68,8 @@ internal enum class RuntimeCallId(internal val encodedAbi: String) {
     ENGLISH_UPPERCASE_TOGGLE_RUNTIME_GET_CACHED_PATCHED_METADATA("Ldev/jason/gboardpatches/extension/keyboard/GboardEnglishUppercaseToggleRuntime;->getCachedPatchedMetadata(Ljava/lang/Object;)Ljava/lang/Object;"),
     ENGLISH_UPPERCASE_TOGGLE_RUNTIME_IS_ENABLED("Ldev/jason/gboardpatches/extension/keyboard/GboardEnglishUppercaseToggleRuntime;->isEnabled()Z"),
     ENGLISH_UPPERCASE_TOGGLE_RUNTIME_IS_PATCHED_METADATA("Ldev/jason/gboardpatches/extension/keyboard/GboardEnglishUppercaseToggleRuntime;->isPatchedMetadata(Ljava/lang/Object;)Z"),
+    NUMBER_HINTS_RUNTIME_BEFORE_KEY_UPDATE("Ldev/jason/gboardpatches/extension/numberhints/GboardHideNumberHintsRuntime;->beforeKeyUpdate(Ljava/lang/Object;)V"),
+    NUMBER_HINTS_RUNTIME_AFTER_KEY_UPDATE("Ldev/jason/gboardpatches/extension/numberhints/GboardHideNumberHintsRuntime;->afterKeyUpdate(Ljava/lang/Object;Ljava/lang/Object;)V"),
     LATIN_GLOBE_KEY_IGNORE_INTERVAL_RUNTIME_APPLY_OVERRIDE("Ldev/jason/gboardpatches/extension/keyboard/GboardLatinGlobeKeyIgnoreIntervalRuntime;->applyOverride(Ljava/lang/Object;)Ljava/lang/Object;"),
     LONG_PRESS_QUICK_ACTIONS_RUNTIME_MAYBE_ENSURE_LONG_PRESS_SCHEDULED("Ldev/jason/gboardpatches/extension/longpressquickactions/GboardLongPressQuickActions1803Runtime;->maybeEnsureLongPressScheduled(Ljava/lang/Object;Landroid/view/View;)V"),
     LONG_PRESS_QUICK_ACTIONS_RUNTIME_MAYBE_HANDLE_GLOBE_GESTURE("Ldev/jason/gboardpatches/extension/longpressquickactions/GboardGlobeDragRuntime;->maybeHandleGestureDispatch(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z"),
