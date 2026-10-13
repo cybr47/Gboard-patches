@@ -990,6 +990,29 @@
       ]
     },
     {
+      "feature_id": "hide_number_hints",
+      "public_patch_name": "Hide Number Hints",
+      "feature_marker": null,
+      "target_family_ids": [
+        "numberhints"
+      ],
+      "migration_scope": "version-sensitive",
+      "consumer_files": [
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/numberhints/GboardHideNumberHintsBytecodePatch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/registry/GboardPatchRegistry.kt"
+      ],
+      "contributions": [
+        {
+          "contribution_id": "hide_number_hints.bytecode",
+          "anchor_family_id": "dedicated_bytecode",
+          "phase": "dedicated",
+          "order": 100,
+          "required_bindings": [],
+          "runtime_calls": []
+        }
+      ]
+    },
+    {
       "feature_id": "incognito_mode_toggle",
       "public_patch_name": "Incognito Mode Toggle",
       "feature_marker": "dev.jason.gboardpatches.feature.manual_incognito",
