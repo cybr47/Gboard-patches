@@ -1008,7 +1008,10 @@
           "phase": "dedicated",
           "order": 100,
           "required_bindings": [],
-          "runtime_calls": []
+          "runtime_calls": [
+            "NUMBER_HINTS_RUNTIME_BEFORE_KEY_UPDATE",
+            "NUMBER_HINTS_RUNTIME_AFTER_KEY_UPDATE"
+          ]
         }
       ]
     },
