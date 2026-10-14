@@ -5,6 +5,20 @@ import static org.junit.Assert.*;
 
 public class GboardHideNumberHintsRuntimeTest {
     @Test
+    public void resolvesGboardsZeroMainLabelIdAndRejectsAliases() {
+        GboardHideNumberHintsRuntime.Candidate match = GboardHideNumberHintsRuntime.match(
+                new CharSequence[] {"q", "1"}, new int[] {0, 202});
+        assertNotNull(match);
+        assertEquals(GboardHideNumberHintsRuntime.DEFAULT_LABEL_VIEW_ID, match.letterViewId);
+        assertEquals(202, match.digitViewId);
+        assertNull(GboardHideNumberHintsRuntime.match(
+                new CharSequence[] {"q", "1"}, new int[] {0, 0}));
+        assertNull(GboardHideNumberHintsRuntime.match(
+                new CharSequence[] {"q", "1"},
+                new int[] {0, GboardHideNumberHintsRuntime.DEFAULT_LABEL_VIEW_ID}));
+    }
+
+    @Test
     public void matchesOnlyTheExpectedEnglishTopRowDigitPairs() {
         final String letters = "qwertyuiop";
         final String digits = "1234567890";

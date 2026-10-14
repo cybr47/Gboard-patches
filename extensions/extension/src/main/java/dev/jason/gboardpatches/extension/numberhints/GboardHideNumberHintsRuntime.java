@@ -1,14 +1,14 @@
 package dev.jason.gboardpatches.extension.numberhints;
 
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.WeakHashMap;
+
+import dev.jason.gboardpatches.extension.settings.GboardPatchesSettings;
 
 /**
  * Full Gboard 18.0.3 visual tweak. SoftKeyDef.g contains display labels;
@@ -20,6 +20,8 @@ public final class GboardHideNumberHintsRuntime {
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
     private static final String TOP_ROW = "qwertyuiop";
     private static final String DIGITS = "1234567890";
+    // SoftKeyView.x maps a metadata label ID of 0 to this view in 18.0.3.
+    static final int DEFAULT_LABEL_VIEW_ID = 0x7f0b0651;
     private static final Map<ViewGroup, AlteredKey> ALTERED = new WeakHashMap<>();
 
     private GboardHideNumberHintsRuntime() { }
@@ -42,6 +44,8 @@ public final class GboardHideNumberHintsRuntime {
     public static void afterKeyUpdate(Object candidate, Object metadata) {
         if (!(candidate instanceof ViewGroup root) || metadata == null) return;
         try {
+            if (!GboardHideNumberHintsSettings.readEnabled(
+                    GboardPatchesSettings.preferences(root.getContext()))) return;
             if (!SOFT_KEY_DEF.equals(metadata.getClass().getName())) return;
             Field labelsField = metadata.getClass().getDeclaredField("g");
             Field viewIdsField = metadata.getClass().getDeclaredField("h");
@@ -62,19 +66,12 @@ public final class GboardHideNumberHintsRuntime {
                     !equalsSingle(hint.getText(), match.digit)) return;
             if (hint.getVisibility() != View.VISIBLE) return;
 
-            AlteredKey altered = new AlteredKey(main, hint);
-            hint.setVisibility(View.GONE);
-            main.setGravity(Gravity.CENTER);
-            ViewGroup.LayoutParams params = main.getLayoutParams();
-            if (main.getParent() == root && params instanceof FrameLayout.LayoutParams) {
-                FrameLayout.LayoutParams centered = new FrameLayout.LayoutParams(
-                        (FrameLayout.LayoutParams) params);
-                centered.gravity = Gravity.CENTER;
-                main.setLayoutParams(centered);
-            }
+            AlteredKey altered = new AlteredKey(hint);
             synchronized (ALTERED) {
                 ALTERED.put(root, altered);
             }
+            // Labels and action definitions stay intact; hide only the hint view.
+            hint.setVisibility(View.GONE);
         } catch (Throwable ignored) {
             // Unknown layouts stay unchanged.
         }
@@ -88,17 +85,22 @@ public final class GboardHideNumberHintsRuntime {
             if (label == null || label.length() != 1) continue;
             char c = Character.toLowerCase(label.charAt(0));
             int topRowIndex = TOP_ROW.indexOf(c);
-            if (topRowIndex < 0 || ids[letterIndex] == 0) continue;
+            int letterId = resolveLabelViewId(ids[letterIndex]);
+            if (topRowIndex < 0 || letterId <= 0) continue;
             char expected = DIGITS.charAt(topRowIndex);
             for (int hintIndex = 0; hintIndex < labels.length; hintIndex++) {
-                if (hintIndex == letterIndex || ids[hintIndex] == 0 ||
-                        ids[hintIndex] == ids[letterIndex]) continue;
+                int hintId = resolveLabelViewId(ids[hintIndex]);
+                if (hintIndex == letterIndex || hintId <= 0 || hintId == letterId) continue;
                 if (equalsSingle(labels[hintIndex], expected)) {
-                    return new Candidate(ids[letterIndex], ids[hintIndex], c, expected);
+                    return new Candidate(letterId, hintId, c, expected);
                 }
             }
         }
         return null;
+    }
+
+    private static int resolveLabelViewId(int metadataId) {
+        return metadataId == 0 ? DEFAULT_LABEL_VIEW_ID : metadataId;
     }
 
     private static boolean equalsSingle(CharSequence text, char value) {
@@ -125,32 +127,17 @@ public final class GboardHideNumberHintsRuntime {
     }
 
     private static final class AlteredKey {
-        final WeakReference<TextView> main;
         final WeakReference<TextView> hint;
         final int previousVisibility;
-        final int previousGravity;
-        final ViewGroup.LayoutParams previousLayoutParams;
 
-        AlteredKey(TextView main, TextView hint) {
-            this.main = new WeakReference<>(main);
+        AlteredKey(TextView hint) {
             this.hint = new WeakReference<>(hint);
             previousVisibility = hint.getVisibility();
-            previousGravity = main.getGravity();
-            ViewGroup.LayoutParams params = main.getLayoutParams();
-            previousLayoutParams = params instanceof FrameLayout.LayoutParams
-                    ? new FrameLayout.LayoutParams((FrameLayout.LayoutParams) params) : null;
         }
 
         void restore() {
-            TextView priorMain = main.get();
             TextView priorHint = hint.get();
             if (priorHint != null) priorHint.setVisibility(previousVisibility);
-            if (priorMain == null) return;
-            priorMain.setGravity(previousGravity);
-            if (previousLayoutParams != null && priorMain.getParent() instanceof FrameLayout) {
-                priorMain.setLayoutParams(new FrameLayout.LayoutParams(
-                        (FrameLayout.LayoutParams) previousLayoutParams));
-            }
         }
     }
 }

@@ -1,42 +1,63 @@
-# Hide Number Hints — full Gboard 18.0.3 port
+# Hide Number Hints — full Gboard 18.0.3
 
-Status: **research / not yet implemented or validated**. This is a feature-branch design note, not a released Morphe patch.
+This feature branch adds an optional visual setting to full Gboard
+`18.0.3.954559732-release-arm64-v8a`, the same build admitted by Jason Wu's
+upstream v3.12.0 patch bundle. Use the APKMirror **APKM split bundle**, which
+includes the dictation feature split, when patching for voice typing.
 
-## Target and user-visible behavior
+## Installation
 
-- Full Gboard `18.0.3.954559732-release-arm64-v8a` (APKMirror APKM split bundle).
-- Hide only the small `1 2 3 4 5 6 7 8 9 0` secondary labels above the QWERTY letters.
-- Preserve normal QWERTY character entry, long-press number actions, numeric keyboard, passwords, and secondary symbol/other-language layouts.
-- Recenter the letter labels if their layout currently reserves a slot for the hint.
-- Eventually expose a user-controlled setting, default **off**, rather than silently changing unrelated keyboard layouts.
+1. Import the `.mpp` from this branch's successful **Gboard Hide Number Hints CI**
+   artifact into Morphe. Adding the upstream source or using its v3.12.0 release
+   does not load this experimental feature branch.
+2. Patch the original APKM and explicitly select **Hide Number Hints**, together
+   with your other desired patches.
+3. Install the patched result. Open **Gboard settings → Patches → Keys, Layout & Symbols
+   → Hide Number Hints**, and enable the toggle (off by default).
+4. Restart Gboard using the Patches settings restart action after changing it.
 
-## Verified upstream integration points
+## Bugs fixed in the first implementation
 
-1. Target bindings already admit Gboard version `18.0.3`.
-2. `gboard-version-bindings.json` identifies the full-Gboard SoftKey bind method as `SoftKeyView.r(SoftKeyDef, long): boolean`.
-3. `GboardSoftKeyFamilyComposer.kt` owns edits to this method so the English up-flick, top-row swipe, spacebar logo, custom symbols and other SoftKey patches can coexist.
-4. The English QWERTY implementation reads `SoftKeyDef.g: CharSequence[]` to resolve the main letter label. Avoid mutating this field when hiding hint labels.
-5. Feature settings are implemented in `extensions/extension` and assembled in `GboardKeyboardLayoutSettingsGroupFeature.java`.
+- No settings dependency, manifest feature marker, settings entry, or stored
+  preference existed. Selecting a patch in Morphe does not itself create a
+  Gboard settings switch. Those are now wired through the upstream settings host.
+- `SoftKeyView.x(SoftKeyDef)` takes the **previous** key metadata for cleanup.
+  It draws the current metadata stored in `SoftKeyView.e`. The old hook passed
+  `p1`, which is null on initial inflation or belongs to another key on reuse.
+  The hook now reads `this.e` after stock rendering.
+- Inserting instructions before the renderer's sole return does not redirect
+  existing branches to them. The label-rendering loop jumps directly to that
+  return, skipping the original after-hook. Replacing the return location with
+  the first hook instruction preserves the incoming branch targets.
+- Gboard maps label view ID `0` to its default main label (`0x7f0b0651`). The
+  matcher now applies that same mapping instead of rejecting those keys.
 
-## Why a straight port is unsafe
+## Behavior and composition
 
-A different project's old Hide Number Hints hook targeted `SoftKeyView.q(...)` in its own Gboard variant. Our full-Gboard 18.0.3 binding identifies `r(...)`, so copying its fingerprint as-is would not work. That project's implementation was later reverted entirely. Its assumption that the secondary label is `SoftKeyDef.h` must be confirmed independently against **this** APK, not copied as fact.
+The extension only hides a visible digit TextView when the current metadata and
+rendered views agree on the corresponding QWERTY letter/digit pair (`q/1` through
+`p/0`, including uppercase). Before the next render it restores visibility so
+recycled views work normally on other rows and layouts. It leaves letter text,
+gravity, layout parameters, `SoftKeyDef.g/h`, and every `ActionDef` untouched.
 
-A second standalone patch that modifies `SoftKeyView.r` without coordinating with `GboardSoftKeyFamilyComposer` can also make existing patch composition fail its exact-stock verification.
+The hook remains in the dedicated `x` renderer. It does not modify the `r` bind
+method owned by the upstream SoftKey family composer, allowing the existing
+up-flick uppercase, editing shortcut, top-row swipe, and spacebar patches to
+compose with it. Input behavior configured by those patches remains in force.
 
-## Required before implementation
+## Validation
 
-- Obtain the exact `.apkm` bundle and inspect `base.apk` / relevant splits, including Gboard's `SoftKeyDef` fields, key-rendering methods, and layout resources.
-- Establish whether the number hints are drawn from metadata, view children or canvas; identify the **render-only** modification that leaves actions intact.
-- Add an opt-in feature to the SoftKey composer (if the bind method is the correct hook) and the extension settings UI, plus focused tests. Never modify long-press action definitions.
-- Build an `.mpp` using the repository's Gradle tasks and confirm patch application against the supplied target. Test actual typing and long-press behavior on device before release.
-- Keep the proof-of-concept on this feature branch; do not merge into `main` or publish a release before functional checks.
+- Inspect the supplied APKM's `base.apk`: `SoftKeyView.x`, its call sites,
+  metadata fields, and the default-label fallback.
+- Run bytecode tests against a fixture assembled from the exact stock renderer,
+  including a check that its loop exit executes the injected hook.
+- Run Android view tests for all ten lowercase/uppercase pairs, zero-ID mapping,
+  action/label preservation, recycled views, disabled state, and other layouts.
+- Run the feature availability and settings toggle persistence tests.
+- Build with `:patches:buildAndroid` and run the existing patch/extension suites.
+- Apply the resulting `.mpp` to the original APKM, both alone and alongside the
+  upstream SoftKey patches, and inspect the resulting DEX/manifest.
 
-## Suggested functional test matrix
-
-- Latin English QWERTY lower/upper case, portrait/landscape.
-- `Q W E R T Y U I O P` number hints hidden, letters visually centered.
-- Long-press Q through P still yields 1 through 0.
-- `?123` and standalone numeric row still work.
-- Existing English QWERTY Up-Flick Uppercase, Long-Press Editing Shortcuts and Swipeable Custom Top Row patches still build together.
-- Disable the new setting and confirm original layout is restored.
+Actual Samsung display, typing, and long-press behavior still need device testing.
+Check `q` through `p` long presses produce `1` through `0`, `?123` still works,
+and disabling the switch restores the hints after restarting Gboard.

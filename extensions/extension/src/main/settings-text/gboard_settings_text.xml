@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings-text locales="en zh-Hant">
+    <string name="gboard_patches_hide_number_hints_title">
+        <translation locale="en">Hide Number Hints</translation>
+        <translation locale="zh-Hant">隱藏數字提示</translation>
+    </string>
+    <string name="gboard_patches_hide_number_hints_summary">
+        <translation locale="en">Hide the small 1–0 labels on QWERTY keys while keeping long-press numbers. Restart Gboard after changing this setting.</translation>
+        <translation locale="zh-Hant">隱藏 QWERTY 按鍵上的小型 1–0 數字提示，保留長按輸入數字。變更此設定後請重新啟動 Gboard。</translation>
+    </string>
+    <string name="gboard_patches_hide_number_hints_section">
+        <translation locale="en">Appearance</translation>
+        <translation locale="zh-Hant">外觀</translation>
+    </string>
+    <string name="gboard_patches_hide_number_hints_error_title">
+        <translation locale="en">Hide Number Hints unavailable</translation>
+        <translation locale="zh-Hant">無法使用隱藏數字提示</translation>
+    </string>
+    <string name="gboard_patches_hide_number_hints_error_summary">
+        <translation locale="en">Reopen Gboard settings and try again.</translation>
+        <translation locale="zh-Hant">請重新開啟 Gboard 設定再試一次。</translation>
+    </string>
     <string name="gboard_patches_frosted_glass_title">
         <translation locale="en">Frosted Glass</translation>
         <translation locale="zh-Hant">磨砂玻璃</translation>

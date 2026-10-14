@@ -64,6 +64,7 @@ import dev.jason.gboardpatches.patches.gboard.features.latinglobe.gboardLatinGlo
 import dev.jason.gboardpatches.patches.gboard.features.latinglobe.gboardLatinGlobeKeyIgnoreIntervalFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.numberhints.gboardHideNumberHintsBytecodePatch
+import dev.jason.gboardpatches.patches.gboard.features.numberhints.gboardHideNumberHintsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoLifecyclePatch
 import dev.jason.gboardpatches.patches.gboard.features.manualincognito.gboardManualIncognitoPolicyPatch
@@ -852,7 +853,11 @@ val gboardHideNumberHintsPatch = gboardPublicResourcePatch(
     default = false,
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
-    dependsOn(gboardHideNumberHintsBytecodePatch)
+    dependsOn(
+        gboardPatchesSettingsPatch,
+        gboardHideNumberHintsFeatureMarkerPatch,
+        gboardHideNumberHintsBytecodePatch,
+    )
 }
 
 @Suppress("unused")

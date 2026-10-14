@@ -26,6 +26,18 @@ Gboard Patches is a public Morphe source for a curated set of Gboard enhancement
 Features designed and built by this project rather than simply unlocking an existing Gboard flag.
 
 <details>
+  <summary><code>Hide Number Hints</code> (experimental branch)</summary>
+
+  Adds an off-by-default toggle under Patches → Keys, Layout &amp; Symbols to hide the
+  small 1–0 labels on English QWERTY keys while preserving long-press number
+  actions. Restart Gboard after changing the toggle. Use the full Gboard
+  18.0.3.954559732 APKM split bundle and the feature branch CI artifact; this
+  patch is not included in Jason Wu's upstream v3.12.0 release.
+
+  See [installation and validation](docs/hide-number-hints-port.md).
+</details>
+
+<details>
   <summary><code>Clipboard Enhancements</code></summary>
 
   Lets you enhance clipboard retention time, item count limits, preview lines, countdown and creation-time labels, order index, grid columns, and optionally render only the first 1,000 characters on each clipboard card.
