@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Zahlenhinweise ausblenden</string>
+    <string name="gboard_patches_hide_number_hints_summary">Blendet die kleinen Ziffern 1–0 auf den QWERTY-Tasten aus; Zahlen per langem Drücken bleiben erhalten. Starte Gboard nach dem Ändern dieser Einstellung neu.</string>
+    <string name="gboard_patches_hide_number_hints_section">Darstellung</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Zahlenhinweise ausblenden nicht verfügbar</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Öffne die Gboard-Einstellungen erneut und versuche es noch einmal.</string>
     <string name="gboard_patches_frosted_glass_title">Milchglas</string>
     <string name="gboard_patches_frosted_glass_summary">Live-Hintergrundunschärfe für das Tastaturfeld.</string>
     <string name="gboard_patches_frosted_glass_error_title">Milchglas nicht verfügbar</string>

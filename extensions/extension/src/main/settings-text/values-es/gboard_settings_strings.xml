@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Ocultar sugerencias numéricas</string>
+    <string name="gboard_patches_hide_number_hints_summary">Oculta las pequeñas etiquetas 1–0 de las teclas QWERTY y mantiene los números al mantener pulsado. Reinicia Gboard después de cambiar este ajuste.</string>
+    <string name="gboard_patches_hide_number_hints_section">Apariencia</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Ocultar sugerencias numéricas no disponible</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Vuelve a abrir los ajustes de Gboard e inténtalo de nuevo.</string>
     <string name="gboard_patches_frosted_glass_title">Vidrio esmerilado</string>
     <string name="gboard_patches_frosted_glass_summary">Desenfoque de fondo en tiempo real para el panel del teclado.</string>
     <string name="gboard_patches_frosted_glass_error_title">Vidrio esmerilado no disponible</string>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Masquer les indications de chiffres</string>
+    <string name="gboard_patches_hide_number_hints_summary">Masque les petits chiffres 1–0 sur les touches QWERTY tout en conservant la saisie des chiffres par appui long. Redémarrez Gboard après avoir modifié ce paramètre.</string>
+    <string name="gboard_patches_hide_number_hints_section">Apparence</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Masquer les indications de chiffres indisponible</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Rouvrez les paramètres de Gboard et réessayez.</string>
     <string name="gboard_patches_frosted_glass_title">Verre dépoli</string>
     <string name="gboard_patches_frosted_glass_summary">Flou d\'arrière-plan en temps réel pour le panneau du clavier.</string>
     <string name="gboard_patches_frosted_glass_error_title">Verre dépoli indisponible</string>

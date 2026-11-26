@@ -13,6 +13,7 @@ import dev.jason.gboardpatches.extension.closeproactivesuggestions.GboardClosePr
 import dev.jason.gboardpatches.extension.customtheme.GboardCustomThemeSettingsFeature;
 import dev.jason.gboardpatches.extension.frostedglass.GboardFrostedGlassSettingsFeature;
 import dev.jason.gboardpatches.extension.emojisize.GboardEmojiSizeSettingsFeature;
+import dev.jason.gboardpatches.extension.numberhints.GboardHideNumberHintsSettingsFeature;
 import dev.jason.gboardpatches.extension.roundedkeyboard.GboardRoundedKeyboardSettingsFeature;
 import dev.jason.gboardpatches.extension.settings.GboardFeatureGroup;
 import dev.jason.gboardpatches.extension.settings.GboardPatchesIcons;
@@ -41,6 +42,7 @@ public final class GboardKeyboardLayoutSettingsGroupFeature
                 GboardSettingsText.get(context,
                         R.string.gboard_patches_group_keyboard_empty_summary),
                 Arrays.asList(
+                        new GboardHideNumberHintsSettingsFeature(context),
                         new GboardSpacebarLogoSettingsFeature(context),
                         new GboardCloseProactiveSuggestionsSettingsFeature(context),
                         new GboardLatinGlobeKeyIgnoreIntervalSettingsFeature(context),

@@ -9,6 +9,8 @@ import android.util.Log;
 public final class GboardPatchesFeatureAvailability {
     public static final String FEATURE_KEYPRESS_HAPTICS =
             "dev.jason.gboardpatches.feature.keypress_haptics";
+    public static final String FEATURE_HIDE_NUMBER_HINTS =
+            "dev.jason.gboardpatches.feature.hide_number_hints";
     public static final String FEATURE_EDITING_ACCESS_POINTS =
             "dev.jason.gboardpatches.feature.editing_access_points";
     public static final String FEATURE_CLIPBOARD_ENHANCEMENTS =

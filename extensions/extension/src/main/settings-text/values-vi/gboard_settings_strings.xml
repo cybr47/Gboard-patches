@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Ẩn gợi ý số</string>
+    <string name="gboard_patches_hide_number_hints_summary">Ẩn các nhãn nhỏ 1–0 trên phím QWERTY nhưng vẫn giữ nhập số khi nhấn giữ. Khởi động lại Gboard sau khi thay đổi cài đặt này.</string>
+    <string name="gboard_patches_hide_number_hints_section">Giao diện</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Không thể dùng Ẩn gợi ý số</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Mở lại cài đặt Gboard và thử lại.</string>
     <string name="gboard_patches_frosted_glass_title">Kính mờ</string>
     <string name="gboard_patches_frosted_glass_summary">Làm mờ nền trực tiếp cho bảng bàn phím.</string>
     <string name="gboard_patches_frosted_glass_error_title">Kính mờ không khả dụng</string>

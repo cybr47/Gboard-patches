@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">数字ヒントを非表示</string>
+    <string name="gboard_patches_hide_number_hints_summary">QWERTY キー上の小さな 1–0 の表示を隠し、長押しでの数字入力は維持します。この設定を変更した後は Gboard を再起動してください。</string>
+    <string name="gboard_patches_hide_number_hints_section">外観</string>
+    <string name="gboard_patches_hide_number_hints_error_title">数字ヒントを非表示を使用できません</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Gboard の設定を開き直して、もう一度お試しください。</string>
     <string name="gboard_patches_frosted_glass_title">すりガラス</string>
     <string name="gboard_patches_frosted_glass_summary">キーボードパネルにリアルタイムの背景ぼかしを適用します。</string>
     <string name="gboard_patches_frosted_glass_error_title">すりガラスを利用できません</string>

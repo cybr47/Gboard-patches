@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Sayı İpuçlarını Gizle</string>
+    <string name="gboard_patches_hide_number_hints_summary">QWERTY tuşlarındaki küçük 1–0 etiketlerini gizler, uzun basarak sayı girişini korur. Bu ayarı değiştirdikten sonra Gboard\'u yeniden başlatın.</string>
+    <string name="gboard_patches_hide_number_hints_section">Görünüm</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Sayı İpuçlarını Gizle kullanılamıyor</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Gboard ayarlarını yeniden açıp tekrar deneyin.</string>
     <string name="gboard_patches_frosted_glass_title">Buzlu Cam</string>
     <string name="gboard_patches_frosted_glass_summary">Klavye paneli için canlı arka plan bulanıklığı.</string>
     <string name="gboard_patches_frosted_glass_error_title">Buzlu Cam kullanılamıyor</string>

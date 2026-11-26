@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Ocultar dicas numéricas</string>
+    <string name="gboard_patches_hide_number_hints_summary">Oculta os pequenos rótulos 1–0 nas teclas QWERTY, mantendo os números ao tocar e manter pressionado. Reinicie o Gboard após alterar esta configuração.</string>
+    <string name="gboard_patches_hide_number_hints_section">Aparência</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Ocultar dicas numéricas indisponível</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Abra as configurações do Gboard novamente e tente outra vez.</string>
     <string name="gboard_patches_frosted_glass_title">Vidro fosco</string>
     <string name="gboard_patches_frosted_glass_summary">Desfoque de fundo em tempo real para o painel do teclado.</string>
     <string name="gboard_patches_frosted_glass_error_title">Vidro fosco indisponível</string>

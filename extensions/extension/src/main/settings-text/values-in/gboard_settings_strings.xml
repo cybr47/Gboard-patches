@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Sembunyikan Petunjuk Angka</string>
+    <string name="gboard_patches_hide_number_hints_summary">Sembunyikan label kecil 1–0 pada tombol QWERTY sambil tetap mempertahankan angka saat tekan lama. Mulai ulang Gboard setelah mengubah setelan ini.</string>
+    <string name="gboard_patches_hide_number_hints_section">Tampilan</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Sembunyikan Petunjuk Angka tidak tersedia</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Buka kembali setelan Gboard dan coba lagi.</string>
     <string name="gboard_patches_frosted_glass_title">Kaca Buram</string>
     <string name="gboard_patches_frosted_glass_summary">Efek buram latar belakang langsung untuk panel keyboard.</string>
     <string name="gboard_patches_frosted_glass_error_title">Kaca Buram tidak tersedia</string>

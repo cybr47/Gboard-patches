@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Hide Number Hints</string>
+    <string name="gboard_patches_hide_number_hints_summary">Hide the small 1–0 labels on QWERTY keys while keeping long-press numbers. Restart Gboard after changing this setting.</string>
+    <string name="gboard_patches_hide_number_hints_section">Appearance</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Hide Number Hints unavailable</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Reopen Gboard settings and try again.</string>
     <string name="gboard_patches_frosted_glass_title">Frosted Glass</string>
     <string name="gboard_patches_frosted_glass_summary">Live background blur for the keyboard panel.</string>
     <string name="gboard_patches_frosted_glass_error_title">Frosted Glass unavailable</string>

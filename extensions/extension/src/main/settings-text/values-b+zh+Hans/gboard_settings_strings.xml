@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">隐藏数字提示</string>
+    <string name="gboard_patches_hide_number_hints_summary">隐藏 QWERTY 按键上的小型 1–0 数字提示，保留长按输入数字。更改此设置后请重新启动 Gboard。</string>
+    <string name="gboard_patches_hide_number_hints_section">外观</string>
+    <string name="gboard_patches_hide_number_hints_error_title">无法使用隐藏数字提示</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">请重新打开 Gboard 设置后再试一次。</string>
     <string name="gboard_patches_frosted_glass_title">毛玻璃效果</string>
     <string name="gboard_patches_frosted_glass_summary">为键盘面板添加实时背景模糊。</string>
     <string name="gboard_patches_frosted_glass_error_title">毛玻璃效果不可用</string>

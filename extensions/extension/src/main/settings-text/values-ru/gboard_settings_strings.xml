@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">Скрыть подсказки цифр</string>
+    <string name="gboard_patches_hide_number_hints_summary">Скрывает маленькие цифры 1–0 на клавишах QWERTY, сохраняя ввод цифр долгим нажатием. Перезапустите Gboard после изменения этого параметра.</string>
+    <string name="gboard_patches_hide_number_hints_section">Внешний вид</string>
+    <string name="gboard_patches_hide_number_hints_error_title">Функция «Скрыть подсказки цифр» недоступна</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Снова откройте настройки Gboard и повторите попытку.</string>
     <string name="gboard_patches_frosted_glass_title">Матовое стекло</string>
     <string name="gboard_patches_frosted_glass_summary">Динамическое размытие фона панели клавиатуры.</string>
     <string name="gboard_patches_frosted_glass_error_title">Эффект «Матовое стекло» недоступен</string>

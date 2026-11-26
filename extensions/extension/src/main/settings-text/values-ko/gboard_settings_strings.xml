@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="gboard_patches_hide_number_hints_title">숫자 힌트 숨기기</string>
+    <string name="gboard_patches_hide_number_hints_summary">QWERTY 키의 작은 1–0 표시를 숨기고 길게 눌러 숫자 입력은 유지합니다. 이 설정을 변경한 후 Gboard를 다시 시작하세요.</string>
+    <string name="gboard_patches_hide_number_hints_section">외관</string>
+    <string name="gboard_patches_hide_number_hints_error_title">숫자 힌트 숨기기를 사용할 수 없음</string>
+    <string name="gboard_patches_hide_number_hints_error_summary">Gboard 설정을 다시 열고 다시 시도하세요.</string>
     <string name="gboard_patches_frosted_glass_title">반투명 유리</string>
     <string name="gboard_patches_frosted_glass_summary">키보드 패널에 실시간 배경 흐림 효과를 적용합니다.</string>
     <string name="gboard_patches_frosted_glass_error_title">반투명 유리를 사용할 수 없음</string>
